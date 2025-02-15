@@ -57,9 +57,11 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             val right = it.x2 * width
             val bottom = it.y2 * height
 
+            // ここで現在のバウンディングボックスの色を設定する
+            boxPaint.color = it.color
             canvas.drawRect(left, top, right, bottom, boxPaint)
-            val drawableText = it.clsName
 
+            val drawableText = it.clsName
             textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, bounds)
             val textWidth = bounds.width()
             val textHeight = bounds.height()
@@ -71,9 +73,9 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
                 textBackgroundPaint
             )
             canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
-
         }
     }
+
 
     fun setResults(boundingBoxes: List<BoundingBox>) {
         results = boundingBoxes
